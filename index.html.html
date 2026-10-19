@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>From Prediction to Response: Digital Technology in Managing Natural Disasters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef3f6;--surface:#fff;--ink:#0f2a3d;--muted:#4c6272;--line:#cbd8e0;--accent:#e8590c;--accent-ink:#fff;--deep:#0f2a3d;--deep-ink:#eaf3f8;--ok:#1b7a4b;--mid:#b7791f;--bad:#c0392b;color-scheme:light;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1620;--surface:#132330;--ink:#e6f0f6;--muted:#9bb2c1;--line:#25394a;--accent:#ff7a33;--accent-ink:#1a0d03;--deep:#071019;--deep-ink:#e6f0f6;--ok:#4cc38a;--mid:#e0a93b;--bad:#ff7b6b;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0b1620;--surface:#132330;--ink:#e6f0f6;--muted:#9bb2c1;--line:#25394a;--accent:#ff7a33;--accent-ink:#1a0d03;--deep:#071019;--deep-ink:#e6f0f6;--ok:#4cc38a;--mid:#e0a93b;--bad:#ff7b6b;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.05rem/1.65 "Public Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","Segoe UI",sans-serif;line-height:1.1;margin:0 0 .5em;letter-spacing:-.02em}
+h1{font-size:clamp(2.3rem,6.5vw,4.6rem);font-weight:800}h2{font-size:clamp(1.7rem,4vw,2.6rem);font-weight:700}h3{font-size:1.25rem;font-weight:700}
+p{margin:0 0 1em;max-width:68ch}a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:5;background:var(--deep);color:var(--deep-ink)}
+nav .wrap{display:flex;gap:18px;align-items:center;justify-content:space-between;min-height:54px;flex-wrap:wrap}
+nav b{font-family:"Bricolage Grotesque",sans-serif}nav div{display:flex;gap:16px;flex-wrap:wrap;font-size:.92rem}nav a{text-decoration:none;opacity:.9}nav a:hover{opacity:1;text-decoration:underline}
+.hero{background:var(--deep);color:var(--deep-ink);padding:64px 0 72px}
+.hero p{font-size:1.15rem;color:#c3d5e0}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink);border:0;border-radius:8px;padding:13px 22px;font:600 1rem "Public Sans",sans-serif;cursor:pointer;text-decoration:none}
+.btn.ghost{background:transparent;color:inherit;border:2px solid currentColor;margin-left:10px}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);margin-top:44px;border-top:4px solid var(--accent)}
+.timeline div{padding:14px 14px 0 0;font-size:.95rem;color:#c3d5e0}.timeline b{display:block;color:var(--deep-ink);font:700 1.2rem "Bricolage Grotesque",sans-serif}
+section{padding:68px 0}
+.stages{display:grid;gap:0;border-left:3px solid var(--line);margin-left:6px}
+.stage{padding:0 0 28px 26px;position:relative}.stage::before{content:"";position:absolute;left:-10px;top:8px;width:17px;height:17px;border-radius:50%;background:var(--accent);border:3px solid var(--bg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:22px}
+.tool{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px}.tool p{margin:0;color:var(--muted);font-size:.97rem}
+.case{display:grid;grid-template-columns:1fr 1fr;gap:28px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px}
+.big{font:800 3.2rem/1 "Bricolage Grotesque",sans-serif;color:var(--accent)}
+.quizbox{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px;max-width:760px}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin-bottom:18px}.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+.opts{display:grid;gap:10px;margin-top:16px}
+.opts button{text-align:left;background:var(--bg);color:var(--ink);border:1.5px solid var(--line);border-radius:8px;padding:13px 16px;font:500 1rem "Public Sans",sans-serif;cursor:pointer}
+.opts button:hover{border-color:var(--accent)}
+.res{font:800 3.4rem/1 "Bricolage Grotesque",sans-serif}
+.tip{border-left:4px solid var(--accent);padding:6px 14px;margin:10px 0;background:var(--bg)}
+.video{aspect-ratio:16/9;background:var(--deep);color:var(--deep-ink);border-radius:14px;display:grid;place-items:center;text-align:center;padding:20px}
+.video iframe{width:100%;height:100%;border:0;border-radius:14px}
+.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:22px}
+.team div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px}.team small{color:var(--muted);display:block}
+.team strong{font:700 1.2rem "Bricolage Grotesque",sans-serif}
+footer{background:var(--deep);color:#c3d5e0;padding:36px 0;font-size:.92rem}footer p{max-width:none;margin:0 0 .4em}
+@media(max-width:720px){.timeline{grid-template-columns:1fr 1fr}.case{grid-template-columns:1fr}.btn.ghost{margin:10px 0 0}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><b>Prediction to Response</b><div><a href="#stages">Stages</a><a href="#tech">Technology</a><a href="#india">India</a><a href="#quiz">Quiz</a><a href="#video">Video</a><a href="#team">Team</a></div></div></nav>
+
+<header class="hero"><div class="wrap">
+<h1>From prediction to response: how digital technology helps manage natural disasters</h1>
+<p>Satellites, sensors, artificial intelligence and mobile alerts can turn hours of warning into saved lives. This site explains how, and checks whether you are ready.</p>
+<a class="btn" href="#quiz">Take the “Are you disaster-ready?” quiz</a><a class="btn ghost" href="#video">Watch our video</a>
+<div class="timeline" aria-label="Four stages of disaster management">
+<div><b>Predict</b>Spot the hazard</div><div><b>Warn</b>Reach people in time</div><div><b>Respond</b>Rescue and relief</div><div><b>Recover</b>Rebuild and learn</div></div>
+</div></header>
+
+<main>
+<section id="stages"><div class="wrap">
+<h2>The four stages of managing a disaster</h2>
+<p>Disaster management is a cycle. Digital tools now support every stage.</p>
+<div class="stages">
+<div class="stage"><h3>1. Predict</h3><p>Weather satellites, radar, river gauges and seismic networks collect data. Computer models turn it into forecasts for cyclones, floods and heavy rain. Earthquakes cannot yet be predicted, but networks can detect them within seconds.</p></div>
+<div class="stage"><h3>2. Warn</h3><p>Forecasts only help if people hear them. Warnings travel by SMS, cell broadcast, radio, television, sirens and apps, in local languages.</p></div>
+<div class="stage"><h3>3. Respond</h3><p>Drones, satellite images and GIS maps show which areas are damaged and which roads are open. Control rooms use this to send rescue teams and relief where it is needed first.</p></div>
+<div class="stage"><h3>4. Recover</h3><p>Damage data supports faster assessment and relief payments. The lessons from each event improve the next forecast, map and evacuation plan.</p></div>
+</div></div></section>
+
+<section id="tech" style="background:var(--surface)"><div class="wrap">
+<h2>Technologies that make the difference</h2>
+<div class="grid">
+<div class="tool"><h3>Satellites and remote sensing</h3><p>Track cyclones, monitor floods and map damage over large areas, day and night.</p></div>
+<div class="tool"><h3>IoT sensors</h3><p>River-level, rainfall and soil-moisture sensors send live readings to flood and landslide warning systems.</p></div>
+<div class="tool"><h3>Artificial intelligence</h3><p>Machine learning improves rainfall and flood forecasts and can sort damage in satellite images much faster than people can.</p></div>
+<div class="tool"><h3>GIS and mapping</h3><p>Layers of roads, shelters, hospitals and flood zones help planners pick safe evacuation routes.</p></div>
+<div class="tool"><h3>Mobile alerts</h3><p>SMS, cell broadcast and apps reach people directly. India uses the Common Alerting Protocol to send standard alerts across channels.</p></div>
+<div class="tool"><h3>Drones</h3><p>Reach cut-off areas to survey damage, find survivors and drop supplies.</p></div>
+</div></div></section>
+
+<section id="india"><div class="wrap">
+<h2>India: what early warning achieved</h2>
+<div class="case">
+<div><div class="big">1999 → 2019</div><p style="margin-top:12px">Odisha’s Super Cyclone of 1999 killed around 10,000 people. When Cyclone Fani hit in 2019, about 1.2 million people were evacuated in advance, and deaths were a small fraction of that earlier toll.</p></div>
+<div><h3>What changed</h3><p>Better forecasts from the India Meteorological Department, clear and repeated warnings, cyclone shelters and trained local volunteers worked together. Technology helped, but only because people acted on it.</p>
+<p style="margin:0">After the 2004 Indian Ocean tsunami, India also built a dedicated tsunami warning centre at INCOIS, Hyderabad.</p></div>
+</div>
+<p style="margin-top:14px;color:var(--muted);font-size:.9rem">Figures are widely reported approximations. See the sources listed in our project report.</p>
+</div></section>
+
+<section id="quiz" style="background:var(--surface)"><div class="wrap">
+<h2>Are you disaster-ready?</h2>
+<p>Eight quick questions. Answer honestly about your home, not what you plan to do someday.</p>
+<div class="quizbox" id="qb" aria-live="polite"></div>
+</div></section>
+
+<section id="video"><div class="wrap">
+<h2>Our video</h2>
+<p>Watch the awareness video made for this project on Instagram.</p>
+<div class="video" id="vid"><div><h3 style="color:var(--deep-ink)">From Prediction to Response</h3><p style="margin:0 auto 18px">Our project video on how digital technology helps manage natural disasters.</p><a class="btn" href="https://www.instagram.com/reel/DeMemVWyeQD/" target="_blank" rel="noopener">Watch the video on Instagram</a></div></div>
+</div></section>
+
+<section id="team" style="background:var(--surface)"><div class="wrap">
+<h2>Project team</h2>
+<p>Course CHE110, Environmental Studies. Academic Task 1 (CA1), Lovely Professional University.</p>
+<div class="team">
+<div><strong>Vansh Joshi</strong><small>Roll no. RK3P26XTB63</small><small>Reg. no. 12612848</small></div>
+<div><strong>Pathan Abdul Razak</strong><small>Roll no. RK3P26XTB61</small><small>Reg. no. 12601631</small></div>
+<div><strong>Tirtho Biswas</strong><small>Roll no. RK3P26XTB62</small><small>Reg. no. 12600434</small></div>
+</div></div></section>
+</main>
+
+<footer><div class="wrap">
+<p><b>From Prediction to Response: Role of Digital Technology in Managing Natural Disasters</b></p>
+<p>Made by Vansh Joshi, Pathan Abdul Razak and Tirtho Biswas for Lovely Professional University, CHE110 Environmental Studies.</p>
+<p>In an emergency in India, dial 112.</p>
+</div></footer>
+
+<script>
+const VIDEO_URL="";
+if(VIDEO_URL){document.getElementById("vid").innerHTML='<iframe src="'+VIDEO_URL+'" title="Project video" allowfullscreen></iframe>'}
+const Q=[
+["Do you know your area’s main risks (flood, earthquake, cyclone, landslide, heat)?","Learn your local risk from your district or state disaster authority."],
+["Does your household have an emergency kit (water, food, torch, first aid, medicines)?","Pack a kit for at least three days and check it every six months."],
+["Do you receive official weather and disaster alerts on your phone?","Install your state alert app and the IMD weather app, and keep phone alerts switched on."],
+["Do you know a safe place and an evacuation route from your home?","Mark two exit routes and a meeting point, and walk the route once."],
+["Do all family members know who to call and where to meet?","Write key phone numbers on paper, since phones and networks can fail."],
+["Are your important documents copied or stored digitally?","Keep scans of IDs, property and insurance papers in cloud storage and a waterproof pouch."],
+["Do you keep a power bank charged and a basic battery or hand-crank radio?","A charged power bank and a radio keep you informed when power goes out."],
+["Have you practised what to do in an earthquake or evacuation (drop, cover, hold on)?","Practise a drill with your household at least once a year."]];
+const O=[["Yes",2],["Partly",1],["No",0]];let i=0,s=0,miss=[];const qb=document.getElementById("qb");
+function show(){if(i>=Q.length)return done();
+qb.innerHTML='<div class="bar"><i style="width:'+(i/Q.length*100)+'%"></i></div><p style="color:var(--muted);margin-bottom:6px">Question '+(i+1)+' of '+Q.length+'</p><h3>'+Q[i][0]+'</h3><div class="opts">'+O.map((o,k)=>'<button data-k="'+k+'">'+o[0]+'</button>').join("")+'</div>'}
+qb.addEventListener("click",e=>{const b=e.target.closest("button[data-k]");if(!b)return;const v=O[b.dataset.k][1];s+=v;if(v<2)miss.push(Q[i][1]);i++;show()});
+function done(){const p=Math.round(s/(Q.length*2)*100);const c=p>=75?"var(--ok)":p>=40?"var(--mid)":"var(--bad)";
+const l=p>=75?"Well prepared":p>=40?"Partly prepared":"Not yet prepared";
+qb.innerHTML='<div class="bar"><i style="width:100%"></i></div><div class="res" style="color:'+c+'">'+p+'%</div><h3>'+l+'</h3>'+(miss.length?'<p>Start with these steps:</p>'+miss.slice(0,4).map(t=>'<div class="tip">'+t+'</div>').join(""):'<p>Great work. Review your plan each year and help your neighbours get ready too.</p>')+'<button class="btn" id="rs" style="margin-top:14px">Take the quiz again</button>';
+document.getElementById("rs").onclick=()=>{i=0;s=0;miss=[];show()}}
+show();
+</script>
+</body>
+</html>
